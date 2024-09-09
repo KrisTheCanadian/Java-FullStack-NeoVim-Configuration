@@ -20,10 +20,6 @@ Below I have listed all the plugins which are included in the configuration, and
 
 A modern plugin manager for NeoVim developed my Folke Lemaitre, a legend in the NeoVim community, you will be seeing more plugins of his make it into the configuration.
 
-### [Dracula ColorScheme](https://github.com/Mofiqul/dracula.nvim)
-
-Everyone needs a color scheme to personalize and escape the drab default colors of NeoVim. My personal favorite is the medium/gray blue with pastelly colors of Dracula. Of course taste in colors is subjective and this can easily be configured to be a different color scheme.
-
 ### [Nvim-Tree](https://github.com/nvim-tree/nvim-tree.lua)
 
 Nvim-Tree is a file explorer plugin for Neovim, providing a convenient and visually appealing way to navigate and manage files and directories within your project directly from the Neovim interface. It offers features like directory tree view, file operations, and customizable key bindings for efficient file manipulation.

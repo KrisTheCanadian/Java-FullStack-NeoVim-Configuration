@@ -40,3 +40,6 @@ require("config.autocmds")
 -- Tell lazy that all plugin specs are found in the plugins directory
 -- Pass it the options we specified above
 require("lazy").setup("plugins", opts)
+
+
+vim.cmd([[colorscheme tokyonight]])
