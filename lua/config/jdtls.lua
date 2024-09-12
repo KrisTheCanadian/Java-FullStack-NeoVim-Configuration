@@ -231,6 +231,9 @@ local function setup_jdtls()
                 parameterNames = {
                     enabled = "all"
                 }
+            },
+            flags = {
+                allow_incremental_sync = true
             }
         }
     }
@@ -242,18 +245,23 @@ local function setup_jdtls()
     }
 
     -- Function that will be ran once the language server is attached
-    local on_attach = function(_, bufnr)
+    local on_attach = function(client, bufnr)
         -- Map the Java specific key mappings once the server is attached
         java_keymaps()
 
         -- Setup the java debug adapter of the JDTLS server
-        require('jdtls.dap').setup_dap()
+        require('jdtls.dap').setup_dap({ hotcodereplace = "auto" })
 
         -- Find the main method(s) of the application so the debug adapter can successfully start up the application
         -- Sometimes this will randomly fail if language server takes to long to startup for the project, if a ClassDefNotFoundException occurs when running
         -- the debug tool, attempt to run the debug tool while in the main class of the application, or restart the neovim instance
         -- Unfortunately I have not found an elegant way to ensure this works 100%
-        require('jdtls.dap').setup_dap_main_class_configs()
+        require('jdtls.dap').setup_dap_main_class_configs({
+            config_overrides = {
+                vmArgs = "-Dspring.profiles.active=local"
+            }
+        })
+        client.server_capabilities.semanticTokensProvider = nil
         -- Enable jdtls commands to be used in Neovim
         require 'jdtls.setup'.add_commands()
         -- Refresh the codelens
